@@ -2,10 +2,12 @@ import yfinance as YahooFinance
 
 GetApplovinInformation = YahooFinance.Ticker("APP")
 
-history = GetApplovinInformation.history(period="1d")
+history = GetApplovinInformation.history(period="1y")
 
-LOTD = history["Low"].iloc[0]
-HOTD = history["High"].iloc[0]
+LOTY = history["Low"].min()
+DLOTY = history["Low"].idxmin()
+HOTY = history["High"].max()
+DHOTY = history["High"].idxmax()
 
-print("The low of the day is", LOTD)
-print("The high of the day is", HOTD)
+print("The lowest price of the year was,", LOTY, "at the date of,", DLOTY)
+print("The highest price of the year was,", HOTY, "at the date of,", DHOTY)
